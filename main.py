@@ -1,7 +1,7 @@
 print("Hello world")
 
-print(1+2+5)
+print(3+2+5)
 
 s = 221
-m = 11
+m = 16
 print(s + m)
