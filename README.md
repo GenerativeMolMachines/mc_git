@@ -46,6 +46,28 @@ git merge
 ```
 git rebase
 ```
+## Файловая структура
+| -- project \
+&emsp; &emsp;| -- .gitignore \
+&emsp; &emsp;| -- README.md \
+&emsp; &emsp;| -- requirements.txt \
+&emsp; &emsp;| -- pyproject.toml \
+&emsp; &emsp;| -- run_model.py \
+&emsp; &emsp;| -- data \
+&emsp; &emsp;&emsp; &emsp;| -- peptides.csv \
+&emsp; &emsp;| -- model \
+&emsp; &emsp;&emsp; &emsp;| -- model_v2.pkl \
+&emsp; &emsp;| -- src \
+&emsp; &emsp;&emsp; &emsp;| -- learning \
+&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;| -- learning.py \
+&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;| -- learning_tools.py \
+&emsp; &emsp;&emsp; &emsp;| -- data_processing \
+&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;| -- merge.py \
+&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;| -- filling.py \
+&emsp; &emsp;&emsp; &emsp;| -- analysis \
+&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;| -- statictics.py \
+&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;| -- DBSCAN.py 
+
 
 # For read.me
 
