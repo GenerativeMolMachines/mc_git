@@ -31,10 +31,13 @@ def blosum62_encode(sequence):
 def process_dataset(df, encoding_func, encoding_name, pad_value):
     encoded_data = df['seq'].apply(encoding_func)
     max_len = max(encoded_data.apply(len))
-    encoded_data = encoded_data.apply(lambda x: np.pad(x, (0, max_len - len(x)), 'constant', constant_values=pad_value))
-
-    encoded_df = pd.DataFrame(encoded_data.tolist(), index=df.index)
-
-    result_df = pd.concat([df, encoded_df])
+      for i in range(len(sequence) - 1):
+                  pair = (sequence[i], sequence[i+1])
+                          if pair in blosum62:
+                                          encoded_vector.append(blosum62[pair])
+                                                  elif (pair[1], pair[0]) in blosum62:
+                                                                  encoded_vector.append(blosum62[(pair[1], pair[0])])
+                                                                          else:
+                                                                                          encoded_vector.append(0)
 
     return result_df
