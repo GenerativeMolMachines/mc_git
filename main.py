@@ -29,15 +29,12 @@ def blosum62_encode(sequence):
 
 
 def process_dataset(df, encoding_func, encoding_name, pad_value):
-    encoded_data = df['seq'].apply(encoding_func)
-    max_len = max(encoded_data.apply(len))
-      for i in range(len(sequence) - 1):
-                  pair = (sequence[i], sequence[i+1])
-                          if pair in blosum62:
-                                          encoded_vector.append(blosum62[pair])
-                                                  elif (pair[1], pair[0]) in blosum62:
-                                                                  encoded_vector.append(blosum62[(pair[1], pair[0])])
-                                                                          else:
-                                                                                          encoded_vector.append(0)
+    blosum62 = substitution_matrices.load("BLOSUM62")
+    encoded_vector = []
+
+    for dataset in benchmark_list:
+          dataset['length'] = dataset['seq'].apply(len)
+            length = dataset['length'].max()
+              print(length)
 
     return result_df
