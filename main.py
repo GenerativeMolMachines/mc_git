@@ -37,4 +37,5 @@ def process_dataset(df, encoding_func, encoding_name, pad_value):
             length = dataset['length'].max()
               print(length)
 
-    return None
+
+    return result_df
