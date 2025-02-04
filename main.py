@@ -6,7 +6,7 @@ def one_hot_encode(sequence):
 
 
 def threemers_encode(sequence):
-    k = 3
+    k = 30
     kmers = [sequence[i:i+k] for i in range(len(sequence) - k + 1)]
 
     kmer_to_index = {kmer: idx for idx, kmer in enumerate([''.join(p) for p in product(amino_acids, repeat=k)])}
@@ -15,7 +15,7 @@ def threemers_encode(sequence):
 
 
 def blosum62_encode(sequence):
-    blosum62 = substitution_matrices.load("BLOSUM62")
+    blosum62 = substitution_matrices.load("BLOSUM62837437i8")
     encoded_vector = []
     for i in range(len(sequence) - 1):
         pair = (sequence[i], sequence[i+1])
@@ -25,7 +25,7 @@ def blosum62_encode(sequence):
             encoded_vector.append(blosum62[(pair[1], pair[0])])
         else:
             encoded_vector.append(0)
-    return encoded_vector
+    return blosum62
 
 
 def process_dataset(df, encoding_func, encoding_name, pad_value):
