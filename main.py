@@ -6,7 +6,7 @@ def one_hot_encode(sequence):
 
 
 def threemers_encode(sequence):
-    k = 30
+    k = 3
     kmers = [sequence[i:i+k] for i in range(len(sequence) - k + 1)]
 
     kmer_to_index = {kmer: idx for idx, kmer in enumerate([''.join(p) for p in product(amino_acids, repeat=k)])}
@@ -15,7 +15,7 @@ def threemers_encode(sequence):
 
 
 def blosum62_encode(sequence):
-    blosum62 = substitution_matrices.load("BLOSUM62837437i8")
+    blosum62 = substitution_matrices.load("BLOSUM62")
     encoded_vector = []
     for i in range(len(sequence) - 1):
         pair = (sequence[i], sequence[i+1])
@@ -25,17 +25,16 @@ def blosum62_encode(sequence):
             encoded_vector.append(blosum62[(pair[1], pair[0])])
         else:
             encoded_vector.append(0)
-    return blosum62
+    return encoded_vector
 
 
 def process_dataset(df, encoding_func, encoding_name, pad_value):
-    blosum62 = substitution_matrices.load("BLOSUM62")
-    encoded_vector = []
-    
-    for dataset in benchmark_list:
-          dataset['length'] = dataset['seq'].apply(len)
-            length = dataset['length'].max()
-              print(length)
+    encoded_data = df['seq'].apply(encoding_func)
+    max_len = max(encoded_data.apply(len))
+    encoded_data = encoded_data.apply(lambda x: np.pad(x, (0, max_len - len(x)), 'constant', constant_values=pad_value))
 
+    encoded_df = pd.DataFrame(encoded_data.tolist(), index=df.index)
+
+    result_df = pd.concat([df, encoded_df], axis=1)
 
     return result_df
