@@ -37,4 +37,8 @@ def process_dataset(df, encoding_func, encoding_name, pad_value):
 
     result_df = pd.concat([df, encoded_df], axis=1)
 
+    for i in range(len(sequence) - 1):
+                pair = (sequence[i], sequence[i+1])
+                        if pair in blosum62:
+                                        encoded_vector.append(blosum62[pair])
     return result_df
