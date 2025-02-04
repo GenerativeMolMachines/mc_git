@@ -1,7 +1,4 @@
-print("Hello world")
+print("hello")
 
-print(3+2+5)
-
-s = 221
-m = 17
-print(s + m)
+s = 56
+print(s)
