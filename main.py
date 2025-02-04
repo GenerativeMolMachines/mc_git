@@ -1,4 +1,7 @@
-print("hello")
+print(3+4)
 
 s = 56
-print(s)
+def f():
+    return x
+
+print(f(s))
