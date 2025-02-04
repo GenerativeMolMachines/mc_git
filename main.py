@@ -35,6 +35,6 @@ def process_dataset(df, encoding_func, encoding_name, pad_value):
 
     encoded_df = pd.DataFrame(encoded_data.tolist(), index=df.index)
 
-    result_df = pd.concat([df, encoded_df], axis=1)
+    result_df = pd.concat([df, encoded_df])
 
     return result_df
